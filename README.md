@@ -2,4 +2,4 @@
 
 <p>Like, dislike and comment on any URL.</p>
 <p>The is extension uses GunDB and Solid. GunDB is P2P. When you comment on a URL, the actual comment is stored in your Personal Online Datastore (POD), and a reference to the comment is stored in Gun.</p>
-<p>![Toolbar](https://github.com/dvo1/toolbar/blob/master/Capture.JPG)</p>
+<p>![Toolbar](/blob/master/Capture.jpg)</p>
