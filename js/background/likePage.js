@@ -6,6 +6,7 @@ async function likePage(pageUrl, reactType, port) {
     let score = 0;
     let pubKey = user.is.pub;
     let chain = user.get('pageReviews').get(pageUrl);
+    // isEmpty() is from utils.js
     let likesChainIsEmpty = await isEmpty('pageReviews', pageUrl, 'likes');
     let dislikesChainIsEmpty = await isEmpty('pageReviews', pageUrl, 'dislikes');
 

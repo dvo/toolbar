@@ -3,10 +3,8 @@ async function getPageComments(pageUrl, port) {
     let empty = await isEmpty();
     if (empty) {
         let comments = await getComments(port);
-
         setTimeout(async function () {
             let len = Object.keys(comments).length;
-
             if (len > 0) {
                 //comments.sort((a, b) => (a.score > b.score) ? 1 : (a.score === b.score) ? ((a.likes > b.likes) ? 1 : -1) : -1);
                 await getFilteredComments(comments, port);
@@ -71,10 +69,6 @@ async function getPageComments(pageUrl, port) {
                     // need to change profileUrl to profileDomain or something like that
                     let profileDomain = await user.get('profile').get(data.userId).get('profileUrl');
                     let profileUrl = `http://${profileDomain}/profile/profile.html?webId=${webId}`;
-                    console.log(profileUrl);
-                    //await fetcher.load(webId);
-                    //let photo = store.any($rdf.sym(webId), VCARD('hasPhoto'));
-                    //let name = store.any($rdf.sym(webId), VCARD('name'));
                     let photo = await solid.data[webId].vcard$hasPhoto;
                     let name = await solid.data[webId].vcard$fn;
                     let webIdOrigin = await getWebIdOrigin(webId);
@@ -114,7 +108,7 @@ async function getPageComments(pageUrl, port) {
         });
     }
 
-    async function getPageLikes(commentId) {
+    /*async function getPageLikes(commentId) {
         return new Promise(resolve => {
             user.get('pageReviews').get(commentId).get('likes').once(function (data) {
                 resolve(data.likes);
@@ -128,5 +122,5 @@ async function getPageComments(pageUrl, port) {
                 resolve(data.likes);
             });
         });
-    }
+    }*/
 }

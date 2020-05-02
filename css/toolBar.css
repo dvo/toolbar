@@ -1,3 +1,5 @@
+/*** This stylesheet needs to be clean up ***/
+
 @font-face {
     font-family: 'OpenSans-Regular';
     src: URL('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Regular.ttf') format('truetype');
@@ -90,15 +92,6 @@ body {
     color: grey;
 }
 
-/*
-.toolbar {
-    color: #fff;
-    border-top: 1px solid #d4d4d4;
-    border-right: 1px solid #d4d4d4;
-    border-left: 1px solid #d4d4d4;
-}
-*/
-
 .toolbar > div {
     cursor: pointer;
     text-align: center;
@@ -112,26 +105,6 @@ body {
 #credits-btn img {
     vertical-align: middle;
 }
-
-/*
-.closeDialog {
-    font-size: 20px;
-    float: right;
-    text-align: center;
-    vertical-align: middle;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    vertical-align: middle;
-    font-weight: bold;
-    cursor: pointer;
-    background: #222d32;
-    border: 1px solid #868282;
-    border-radius: 4px;
-}
-.closeDialog:hover {
-    background-color: #868282;
-}*/
 
 x-star-rating {
     font-size: 18px;
@@ -157,24 +130,6 @@ x-star-rating > .star.full::after {
     border-radius: 50%;
     margin-right: 10px;
 }
-
-/*** need to clean up these styles ***/
-
-
-/*dialog {
-    background: #2c3a40;
-    top: 20px;
-    max-width: 600px;
-    width: 100%;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 14px;
-    font-family: sans-serif;
-    -webkit-box-shadow: 0px 10px 11px -4px rgba(0, 0, 0, 0.66);
-    -moz-box-shadow: 0px 10px 11px -4px rgba(0, 0, 0, 0.66);
-    box-shadow: 0px 10px 11px -4px rgba(0, 0, 0, 0.66);
-}*/
-
 
 /* #dialog is for browser action popup */
 

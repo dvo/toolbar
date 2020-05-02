@@ -3,12 +3,6 @@
 var gun = Gun();
 var user = gun.user();
 
-/*const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
-const VCARD = $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');
-const store = $rdf.graph();
-const fetcher = new $rdf.Fetcher(store);
-const updater = new $rdf.UpdateManager(store);
-*/
 const fileClient = SolidFileClient;
 (async function () {
     const session = await solid.auth.currentSession();
@@ -19,7 +13,7 @@ const fileClient = SolidFileClient;
     sessionStorage: true
 });*/
 
-/************* API for external apps and extensions (NOTE: Internal API is below) *************/
+/************* API for websites and external extensions (NOTE: Internal API is below) *************/
 
 chrome.runtime.onConnectExternal.addListener(function (port) {
     port.onMessage.addListener(async function (request) {
@@ -31,7 +25,8 @@ chrome.runtime.onConnectExternal.addListener(function (port) {
                 type: "pong"
             });
         }
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // This should be renamed to 'logout'
         if (request.type === "clearLocalStorage") {
             //if (window.confirm(`Clear DVO localStorage`)) {
             user.leave();
@@ -39,17 +34,10 @@ chrome.runtime.onConnectExternal.addListener(function (port) {
             //}
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "storeSolidSessionToken") {
+        if (request.type === "storeSolidSessionToken") {
             if (window.confirm(`Please confirm that you want to login`)) {
                 let u = request.sessionToken.webId;
                 let p = request.password;
-                console.log(u);
-
-                /* Need to check that the user is already registered, if false, register the account. If true, login. When registering an account, you will need to create a vanity address. The user must be able to reveal their keys in a settings page, where they can copy them to the clipboard */
-
-                //await fetcher.load(u);
-                //let photo = store.any($rdf.sym(u), VCARD('hasPhoto'));
-                // need to switch to ldflex
 
                 //This needs to be in the try/catch
                 let sessionToken = JSON.stringify(request.sessionToken);
@@ -80,91 +68,72 @@ chrome.runtime.onConnectExternal.addListener(function (port) {
                 }
             }
         }
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "saveResume") {
-            if (window.confirm(`Confirm save`)) {}
-        }
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "updateProfile") {
-            if (window.confirm(`Confirm update profile`)) {
-                console.log(session);
-                if (session) {}
-            } else {
-                alert('Please login to the DVO extension');
-            }
-        }
     });
 });
 
 
-/***** Internal API for login and registration *****/
+/***** Internal API for toolbar *****/
 
 chrome.runtime.onConnect.addListener(function (port) {
-    console.log(port.name);
-    console.assert(port.name == "dvo"); // Do i need this? 
     port.onMessage.addListener(async function (request) {
 
         if (request.type === "openComments") {
             openComments();
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "getPageComments") {
+        if (request.type === "getPageComments") {
             getPageComments(request.pageUrl, port)
             return true;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "addComment") {
+        if (request.type === "addComment") {
             if (window.confirm(`Confirm add comment`)) {
                 addComment(request.pageUrl, request.commentId, request.comment, request.date, port);
             }
             return true;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "likeComment") {
+        if (request.type === "likeComment") {
             if (window.confirm(`Confirm like comment`)) {
                 likeComment(request.pageUrl, request.commentId, request.reactType, port);
             }
             return true;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        else if (request.type === "deleteComment") {
+        if (request.type === "deleteComment") {
             if (window.confirm(`Confirm delete comment`)) {
                 deleteComment(request.pageUrl, request.commentId, port);
             }
             return true;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        else if (request.type === "updateComment") {
+        if (request.type === "updateComment") {
             if (window.confirm(`Confirm edit comment`)) {
                 updateComment(request.pageUrl, request.commentId, request.update, port);
             }
             return true;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        else if (request.type === "likePage") {
+        if (request.type === "likePage") {
             if (window.confirm(`Confirm like page`)) {
                 likePage(request.pageUrl, request.reactType, port);
             }
             return true;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////// 
-        else if (request.type === "getPageLikes") {
+        if (request.type === "getPageLikes") {
             if (user.is) {
                 getPageLikes(request.pageUrl, port);
             }
             return true;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /*else if (request.type === "logout") {
-            user.leave();
-        }*/
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "getPageComments") {
+        if (request.type === "getPageComments") {
             getPageComments(request.pageUrl, port)
             return true;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        else if (request.type === "countComments") {
+        if (request.type === "countComments") {
             // still need to filter out undefined, nulls and duplicates
             let num = await countComments(request.pageUrl);
             setTimeout(function () {
