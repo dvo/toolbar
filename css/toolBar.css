@@ -185,10 +185,11 @@ body {
 }
 #dialogFooter {
     /*line-height: 35px;*/
-    height: 20px;
-    display: inline-block;
-    text-align: center;
+    /*height: 20px;*/
+    /*display: inline-block;*/
+    /*text-align: center;*/
     /*background-color: #1c2529;*/
+    padding:15px !important;
     background-image: linear-gradient(transparent, black);
     width: 100%;
     position: fixed;
