@@ -6,7 +6,7 @@ async function getPageComments(pageUrl, port) {
         setTimeout(async function () {
             let len = Object.keys(comments).length;
             if (len > 0) {
-                //comments.sort((a, b) => (a.score > b.score) ? 1 : (a.score === b.score) ? ((a.likes > b.likes) ? 1 : -1) : -1);
+                comments.sort((a, b) => (a.score > b.score) ? 1 : (a.score === b.score) ? ((a.likes > b.likes) ? 1 : -1) : -1);
                 await getFilteredComments(comments, port);
             } else {
                 port.postMessage({
