@@ -185,17 +185,12 @@ body {
 }
 #dialogFooter {
     /*line-height: 35px;*/
-    height: 30px;
+    height: 20px;
     display: inline-block;
     text-align: center;
     /*background-color: #1c2529;*/
-    /*-webkit-box-shadow: inset 0px -14px 14px 5px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: inset 0px -14px 14px 5px rgba(0, 0, 0, 0.75);
-    box-shadow: inset 0px -14px 14px 5px rgba(0, 0, 0, 0.75);*/
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 11%, rgba(0, 0, 0, 0.8099614845938375) 30%, rgba(0, 0, 0, 0) 74%);
+    background-image: linear-gradient(transparent, black);
     width: 100%;
-    /*border-radius: 4px;*/
-    /*margin-top: 20px;*/
     position: fixed;
     bottom: 0;
     left: 0;
@@ -284,6 +279,7 @@ textarea.post-comment {
     box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.57);
     box-sizing: border-box;
     vertical-align: bottom;
+    resize: vertical;
 }
 textarea.post-comment:focus {
     outline: none;

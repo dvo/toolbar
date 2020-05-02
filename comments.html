@@ -15,7 +15,7 @@
     <div id="dialog">
         <!--<div id="dialogHeader">Comments (<span id="comments">0</span>)</div>-->
         <div id="dialogInput">
-            <textarea class="post-comment" placeholder="Write a comment..."></textarea>
+            <textarea class="post-comment" placeholder="Write a comment..." oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
             <button class="post-comment-btn">POST <i class="fa fa-chevron-circle-right"></i></button>
         </div>
         <div id="dialogBody">
