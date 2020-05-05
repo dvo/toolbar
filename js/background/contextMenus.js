@@ -11,42 +11,102 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.runtime.onInstalled.addListener(function () {
-    var title = "Add photo to gallery";
+    var title = "Add to photos";
     var context = "image";
     var id = chrome.contextMenus.create({
         "title": title,
         "contexts": [context],
-        "id": "Add photo to gallery"
+        "id": "Add to photos"
     });
 });
 
 chrome.runtime.onInstalled.addListener(function () {
-    var title = "Like Image";
+    var title = "Remove from photos";
     var context = "image";
     var id = chrome.contextMenus.create({
         "title": title,
         "contexts": [context],
-        "id": "Like Image"
+        "id": "Remove from photos"
     });
 });
 
 chrome.runtime.onInstalled.addListener(function () {
-    var title = "Dislike Image";
+    var title = "Rename photo";
     var context = "image";
     var id = chrome.contextMenus.create({
         "title": title,
         "contexts": [context],
-        "id": "Dislike Image"
+        "id": "Rename photo"
     });
 });
 
 chrome.runtime.onInstalled.addListener(function () {
-    var title = "Share Image";
+    var title = "Like Photo";
     var context = "image";
     var id = chrome.contextMenus.create({
         "title": title,
         "contexts": [context],
-        "id": "Share Image"
+        "id": "Like photo"
+    });
+});
+
+chrome.runtime.onInstalled.addListener(function () {
+    var title = "Dislike photo";
+    var context = "image";
+    var id = chrome.contextMenus.create({
+        "title": title,
+        "contexts": [context],
+        "id": "Dislike photo"
+    });
+});
+
+chrome.runtime.onInstalled.addListener(function () {
+    var title = "Share photo";
+    var context = "image";
+    var id = chrome.contextMenus.create({
+        "title": title,
+        "contexts": [context],
+        "id": "Share photo"
+    });
+});
+
+chrome.runtime.onInstalled.addListener(function () {
+    var title = "Like page";
+    var context = "image";
+    var id = chrome.contextMenus.create({
+        "title": title,
+        "contexts": [context],
+        "id": "Like page"
+    });
+});
+
+chrome.runtime.onInstalled.addListener(function () {
+    var title = "Dislike page";
+    var context = "image";
+    var id = chrome.contextMenus.create({
+        "title": title,
+        "contexts": [context],
+        "id": "Dislike page"
+    });
+});
+
+chrome.runtime.onInstalled.addListener(function () {
+    var title = "View profile";
+    var context = "image";
+    var id = chrome.contextMenus.create({
+        "title": title,
+        "contexts": [context],
+        "id": "View profile"
+    });
+});
+
+chrome.runtime.onInstalled.addListener(function () {
+    var title = "Report";
+    var context = "image";
+    var id = chrome.contextMenus.create({
+        "title": title,
+        "contexts": [context],
+        "id": "Report"
     });
 });
 
