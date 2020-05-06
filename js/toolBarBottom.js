@@ -7,8 +7,6 @@ class ToolBar extends HTMLElement {
         const toolBarCss = chrome.extension.getURL("css/toolBar.css");
         const fontAwesome = chrome.extension.getURL("css/font-awesome.min.css");
         const jquery = chrome.extension.getURL("js/vendor/jquery-3.3.1.js");
-        const gunJs = chrome.extension.getURL("js/vendor/gun.js");
-        const seaJs = chrome.extension.getURL("js/vendor/sea.js");
 
         let myImage = document.createElement('img');
         let iconUrl = chrome.extension.getURL("images/c.png");
@@ -20,9 +18,6 @@ class ToolBar extends HTMLElement {
         if (webId !== null) {
             url = webId;
         }
-        /*
-        const laserExtensionId = "bnmeokbnbegjnbddihbidleappfkiimj";
-        const port = chrome.runtime.connect(laserExtensionId);*/
 
         var port = chrome.runtime.connect({
             name: "dvo"
@@ -40,9 +35,13 @@ class ToolBar extends HTMLElement {
             let hasLiked = false;
             let hasDisliked = false;
             let obj = null;
+            let commentCount = 0;
 
             obj = await getPageLikes();
-            let commentCount = await countComments();
+            totLikes = obj.likes;
+            totDislikes = obj.dislikes;
+            score = obj.score;
+            commentCount = await countComments();
 
             if (obj.likedAlready)
                 likeClass = "gray";
@@ -77,23 +76,19 @@ class ToolBar extends HTMLElement {
                 });
             }
 
-
-
             shadowRoot.innerHTML = `
 <link rel="stylesheet" href="${toolBarCss}">
 <link rel="stylesheet" href="${fontAwesome}">
 <script src="${jquery}"></script>
-<script src="${gunJs}"></script>
-<script src="${seaJs}"></script>
 <div id="close">
 <div><span class="arrow">&#9650;</span></div>
 </div>
 <div class="toolbar bottom">
 <div id="like"><i class="${likeClass} fa fa-thumbs-up"></i></div>
-<div id="likes">${obj.likes}</div>
+<div id="likes">${totLikes}</div>
 <div id="dislike"><i class="${dislikeClass} fa fa-thumbs-down"></i></div>
-<div id="dislikes">${obj.dislikes}</div>
-<div><span id="score">${obj.score}</span>%</div>
+<div id="dislikes">${totDislikes}</div>
+<div><span id="score">${score}</span>%</div>
 <div id="comment"><i class="yellow fa fa-comment"></i></div>
 <div id="comments">${commentCount}</div>
 <div id="credits-btn"><img src="${iconUrl}" /></div>
@@ -110,20 +105,25 @@ class ToolBar extends HTMLElement {
             let close = shadowRoot.getElementById("close");
             let scoreDiv = shadowRoot.getElementById("score");
             let toolbar = shadowRoot.querySelector(".toolbar");
+            let creditsBtn = shadowRoot.getElementById("credits-btn");
+
+            $(creditsBtn).on('click touchstart', function () {
+                alert(`This feature is not ready yet. Stay tuned...`);
+            });
 
 
-            async function isUserLoggedIn() {
+            /*async function isUserLoggedIn() {
                 return new Promise(resolve => {
                     port.postMessage({
                         type: "isUserLoggedIn"
                     });
                     port.onMessage.addListener(function (res) {
-                        if (res.type == "loggedIn" && res.response) { // this should be isLoggedIn. change in background.js of API
+                        if (res.type == "loggedIn" && res.response) { 
                             resolve(true);
                         }
                     });
                 });
-            }
+            }*/
 
             $(close).on('click', function () {
                 $(toolbar).toggleClass("toolbar-slide-up");
