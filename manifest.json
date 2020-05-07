@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "manifest_version": 2,
     "description": "Like, dislike, and comment on any URL",
-    "permissions": ["storage", "contextMenus", "tabs", "activeTab", "https://dvo1.github.io/profile/*"],
+    "permissions": ["storage", "contextMenus", "tabs", "activeTab", "https://dvo.github.io/profile/*"],
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "externally_connectable": {
         // all_urls doesn't seem to work??
