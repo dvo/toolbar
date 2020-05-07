@@ -6,7 +6,8 @@
     "permissions": ["storage", "contextMenus", "tabs", "activeTab", "https://dvo1.github.io/profile/*"],
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "externally_connectable": {
-        "matches": ["http://localhost:8000/*", "https://dvo1.github.io/profile/*", "<all_urls>", "*://*/*/*/*"],
+        // all_urls doesn't seem to work??
+        "matches": ["http://localhost:8000/*", "https://dvo.github.io/*/*", "<all_urls>", "*://*/*/*/*"],
         "ids": ["*"]
     },
     "icons": {
